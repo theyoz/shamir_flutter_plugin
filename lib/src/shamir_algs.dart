@@ -173,11 +173,3 @@ class ShamirClaude01 implements IShamir {
     return x;
   }
 }
-
-class ShamirSecretSharing {
-  static final IShamir _instance = ShamirClaude01();
-
-  static getInstance() {
-    return _instance;
-  }
-}
