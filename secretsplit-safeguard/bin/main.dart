@@ -3,9 +3,34 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:args/args.dart';
+import 'package:cryptography/cryptography.dart';
 import 'package:image/image.dart' as img;
 import 'package:zxing2/qrcode.dart';
 import 'package:shamir_secret_plg/shamir_secret_plg.dart';
+import 'cipher_utils.dart';
+import 'package:path/path.dart' as p;
+
+Future<File> _writeWithAutoPrefix({
+  required File inputFile,
+  required String targetFilename,
+  required Uint8List data,
+}) async {
+  final dir = inputFile.parent;
+  final base = p.basenameWithoutExtension(targetFilename);
+  final ext = p.extension(targetFilename);
+
+  for (int i = 0;; i++) {
+    final prefix = i == 0 ? '' : '${i.toString().padLeft(2, '0')}_';
+    final candidateName = '$prefix$base$ext';
+    final fullPath = p.join(dir.path, candidateName);
+    final candidateFile = File(fullPath);
+
+    if (!await candidateFile.exists()) {
+      await candidateFile.writeAsBytes(data);
+      return candidateFile;
+    }
+  }
+}
 
 void main(List<String> arguments) async {
   final parser = ArgParser()
@@ -64,10 +89,18 @@ void main(List<String> arguments) async {
         }
       }
 
-      print(shares);
-      /*final combined = shamir.combine(shares);
-      File(outputFile).writeAsBytesSync(combined);
-      print('Secret reconstructed and written to $outputFile');*/
+      if (firstShare is ShamirShareV1) {
+        IShamir shamir = ShamirClaude01();
+        final combined = shamir.combine(shares);
+        final data = await File(inputFile).readAsBytes();
+        final decipheredData = await decryptFile(data, SecretKey(combined));
+        final outputFile = await _writeWithAutoPrefix(inputFile: File(inputFile), targetFilename: firstShare.filename, data: decipheredData);
+        print('Secret reconstructed and written to $outputFile');
+      } else {
+        print('Could not decrypt because shares file is unknown');
+        exit(1);
+      }
+
       break;
 
     case 'read_qr':
