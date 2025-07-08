@@ -6,14 +6,31 @@ on:
       - 'v*'  # triggers only on tags like v1.0.0
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - target: linux
+            os: ubuntu-latest
+            out: shamir_linux
+            exe: shamir_linux
+          - target: windows
+            os: windows-latest
+            out: shamir_windows
+            exe: shamir_windows.exe
+          - target: macos
+            os: macos-latest
+            out: shamir_macos
+            exe: shamir_macos
+
     steps:
       - uses: actions/checkout@v3
+
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.4'  # or whatever version you want
-      - run: pwd && ls -R
+          flutter-version: '3.32.4'
 
       - name: Get deps in plugin root
         run: flutter pub get
@@ -27,41 +44,14 @@ jobs:
         working-directory: secretsplit-safeguard
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o ../build/shamir_linux
+        run: dart compile exe bin/main.dart -o ../build/${{ matrix.exe }}
         working-directory: secretsplit-safeguard
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: shamir_linux
-          path: build/shamir_linux
-
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.32.4'  # or whatever version you want
-      - run: flutter pub get
-      - run: dart compile exe secretsplit-safeguard/bin/main.dart -o build/shamir_windows.exe
-      - uses: actions/upload-artifact@v4
-        with:
-          name: shamir_windows
-          path: build/shamir_windows.exe
-
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.32.4'  # or whatever version you want
-      - run: flutter pub get
-      - run: dart compile exe secretsplit-safeguard/bin/main.dart -o build/shamir_macos
-      - uses: actions/upload-artifact@v4
-        with:
-          name: shamir_macos
-          path: build/shamir_macos
+          name: ${{ matrix.out }}
+          path: build/${{ matrix.exe }}
 
   release:
     needs: [build-linux, build-windows, build-macos]
