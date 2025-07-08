@@ -56,7 +56,7 @@ jobs:
         working-directory: secretsplit-safeguard
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o ../build/shamir_linux
+        run: dart compile exe bin/main.dart -o ../build/shamir_window.exe
         working-directory: secretsplit-safeguard
 
       - uses: actions/upload-artifact@v4
@@ -85,7 +85,7 @@ jobs:
         working-directory: secretsplit-safeguard
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o ../build/shamir_linux
+        run: dart compile exe bin/main.dart -o ../build/shamir_macos
         working-directory: secretsplit-safeguard
 
       - uses: actions/upload-artifact@v4
