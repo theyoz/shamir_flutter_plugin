@@ -13,7 +13,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
       - run: dart compile exe example/bin/main.dart -o build/shamir_linux
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: shamir_linux
           path: build/shamir_linux
@@ -25,7 +25,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
       - run: dart compile exe example/bin/main.dart -o build/shamir_windows.exe
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: shamir_windows
           path: build/shamir_windows.exe
@@ -37,7 +37,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
       - run: dart compile exe example/bin/main.dart -o build/shamir_macos
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: shamir_macos
           path: build/shamir_macos
@@ -46,7 +46,7 @@ jobs:
     needs: [build-linux, build-windows, build-macos]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           path: dist
 
