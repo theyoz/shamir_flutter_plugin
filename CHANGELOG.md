@@ -1,15 +1,19 @@
-## 0.1.0
+## 0.5.0
 
-- Initial release
+Shares can now have application metadata
 
-## 0.2.0
+## 0.4.0
 
-- Correction for publishing plugin
+- More correction for publishing plugin
 
 ## 0.3.0
 
 - More correction for publishing plugin
 
-## 0.4.0
+## 0.2.0
 
-- More correction for publishing plugin
+- Correction for publishing plugin
+
+## 0.1.0
+
+- Initial release
