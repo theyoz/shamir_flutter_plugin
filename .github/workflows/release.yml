@@ -13,10 +13,9 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.32.4'  # or whatever version you want
+      - run: pwd && ls -R
       - run: flutter pub get
-        working-directory: secretsplit-safeguard
       - run: dart compile exe secretsplit-safeguard/bin/main.dart -o build/shamir_linux
-        working-directory: secretsplit-safeguard
       - uses: actions/upload-artifact@v4
         with:
           name: shamir_linux
