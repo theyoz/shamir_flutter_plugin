@@ -2,7 +2,7 @@ name: shamir_secret_plg
 description:
   Shamir's Secret Sharing plugin for Flutter and Dart,
   threshold-based recovery, and cross-platform compatibility including web, mobile, and desktop.
-version: 0.5.0
+version: 0.6.0
 homepage: https://secretsplit.io
 
 environment:
@@ -44,16 +44,20 @@ flutter:
         package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       ios:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       linux:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       macos:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       windows:
-        pluginClass: ShamirSecretPlgPluginCApi
+        package: com.example.shamir_secret_plg
+        pluginClass: ShamirSecretPlgPlugin
       web:
-        pluginClass: ShamirSecretPlgWeb
-        fileName: shamir_secret_plg_web.dart
+        pluginClass: ShamirSecretPlgWeb        # <-- match Dart class name
+        fileName: shamir_secret_plg_web.dart   # <-- relative to `lib/`
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
