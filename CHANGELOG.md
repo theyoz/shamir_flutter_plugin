@@ -1,3 +1,7 @@
+## 0.6.0
+
+Fixed web usage of the plugin
+
 ## 0.5.0
 
 Shares can now have application metadata
