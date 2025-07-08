@@ -4,9 +4,12 @@ import 'dart:typed_data';
 String toHex(Uint8List bytes) =>
     bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
 
-abstract class ShamirShare {}
+class ShamirShare {
+  // This is for app to add metadata to the share specific to the app
+  final Map<String, String> bag = {};
+}
 
-class ShamirShareV1 implements ShamirShare {
+class ShamirShareV1 extends ShamirShare {
   String id = "";
   String filename = "";
   int minShares = 0;
