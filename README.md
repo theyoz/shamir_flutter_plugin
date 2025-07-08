@@ -20,7 +20,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  secretsplit: ^0.6.0
+  shamir_secret_plg: ^0.6.0
 ```
 
 ## Example
