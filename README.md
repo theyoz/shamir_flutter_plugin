@@ -1,6 +1,7 @@
 # secretsplit
 
-[![pub package](https://img.shields.io/pub/v/secretsplit.svg)](https://pub.dev/packages/shamir_secret_plg/changelog)
+[![pub package](https://img.shields.io/pub/v/shamir_secret_plg.svg)](https://pub.dev/packages/shamir_secret_plg/changelog)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-blue?style=for-the-badge&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/yoramtelav0)
 
 A Flutter plugin for Shamir's Secret Sharing, supporting encryption, share splitting, and 
