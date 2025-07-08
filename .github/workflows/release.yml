@@ -6,31 +6,14 @@ on:
       - 'v*'  # triggers only on tags like v1.0.0
 
 jobs:
-  build:
-    name: Build ${{ matrix.target }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - target: linux
-            os: ubuntu-latest
-            out: shamir_linux
-            exe: shamir_linux
-          - target: windows
-            os: windows-latest
-            out: shamir_windows
-            exe: shamir_windows.exe
-          - target: macos
-            os: macos-latest
-            out: shamir_macos
-            exe: shamir_macos
-
+  build-linux:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.32.4'
+          flutter-version: '3.32.4'  # or whatever version you want
+      - run: pwd && ls -R
 
       - name: Get deps in plugin root
         run: flutter pub get
@@ -44,14 +27,71 @@ jobs:
         working-directory: secretsplit-safeguard
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o ../build/${{ matrix.exe }}
+        run: dart compile exe bin/main.dart -o ../build/shamir_linux
         working-directory: secretsplit-safeguard
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.out }}
-          path: build/${{ matrix.exe }}
+          name: shamir_linux
+          path: build/shamir_linux
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.4'  # or whatever version you want
+      - run: pwd && ls -R
+
+      - name: Get deps in plugin root
+        run: flutter pub get
+
+      - name: Get deps in secretsplit-safeguard
+        run: flutter pub get
+        working-directory: secretsplit-safeguard
+
+      - name: Create output dir
+        run: mkdir -p ../build
+        working-directory: secretsplit-safeguard
+
+      - name: Compile executable
+        run: dart compile exe bin/main.dart -o ../build/shamir_linux
+        working-directory: secretsplit-safeguard
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shamir_linux
+          path: build/shamir_linux
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.32.4'  # or whatever version you want
+      - run: pwd && ls -R
+
+      - name: Get deps in plugin root
+        run: flutter pub get
+
+      - name: Get deps in secretsplit-safeguard
+        run: flutter pub get
+        working-directory: secretsplit-safeguard
+
+      - name: Create output dir
+        run: mkdir -p ../build
+        working-directory: secretsplit-safeguard
+
+      - name: Compile executable
+        run: dart compile exe bin/main.dart -o ../build/shamir_linux
+        working-directory: secretsplit-safeguard
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shamir_linux
+          path: build/shamir_linux
 
   release:
     needs: [build-linux, build-windows, build-macos]
