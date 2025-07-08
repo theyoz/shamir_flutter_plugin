@@ -101,12 +101,14 @@ jobs:
         with:
           path: dist
 
+      - run: pwd && ls -R
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/shamir_linux/build/shamir_linux
-            dist/shamir_windows/build/shamir_windows.exe
-            dist/shamir_macos/build/shamir_macos
+            dist/shamir_linux/shamir_linux
+            dist/shamir_windows/shamir_windows.exe
+            dist/shamir_macos/shamir_macos
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
