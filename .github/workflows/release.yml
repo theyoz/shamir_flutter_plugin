@@ -56,13 +56,13 @@ jobs:
         working-directory: secretsplit-safeguard
 
       - name: Compile executable
-        run: dart compile exe bin/main.dart -o ../build/shamir_window.exe
+        run: dart compile exe bin/main.dart -o ../build/shamir_windows.exe
         working-directory: secretsplit-safeguard
 
       - uses: actions/upload-artifact@v4
         with:
-          name: shamir_linux
-          path: build/shamir_linux
+          name: shamir_windows
+          path: build/shamir_windows.exe
 
   build-macos:
     runs-on: macos-latest
@@ -90,8 +90,8 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: shamir_linux
-          path: build/shamir_linux
+          name: shamir_macos
+          path: build/shamir_macos
 
   release:
     needs: [build-linux, build-windows, build-macos]
@@ -105,8 +105,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist/shamir_linux/shamir_linux
-            dist/shamir_windows/shamir_windows.exe
-            dist/shamir_macos/shamir_macos
+            dist/shamir_linux/build/shamir_linux
+            dist/shamir_windows/build/shamir_windows.exe
+            dist/shamir_macos/build/shamir_macos
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
