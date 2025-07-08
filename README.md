@@ -7,4 +7,4 @@ This library implements manageable Shamir Algorithm
 
 ## Example
 
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-blue?style=for-the-badge&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/yoramhalberstam)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-blue?style=for-the-badge&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/yoramtelav0)
