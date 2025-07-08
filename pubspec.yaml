@@ -55,6 +55,9 @@ flutter:
       windows:
         package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
+      web:
+        pluginClass: ShamirSecretPlgWeb        # <-- match Dart class name
+        fileName: shamir_secret_plg_web.dart   # <-- relative to `lib/`
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
