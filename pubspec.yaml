@@ -44,16 +44,20 @@ flutter:
         package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       ios:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       linux:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       macos:
+        package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
       windows:
-        pluginClass: ShamirSecretPlgPluginCApi
+        package: com.example.shamir_secret_plg
+        pluginClass: ShamirSecretPlgPlugin
       web:
-        pluginClass: ShamirSecretPlgWeb
-        fileName: shamir_secret_plg_web.dart
+        package: com.example.shamir_secret_plg
+        pluginClass: ShamirSecretPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
