@@ -10,8 +10,8 @@ void main() {
       ..minShares = 3
       ..share = Uint8List.fromList([1, 2, 3, 4, 5]);
 
-    final text = serializeShares(original);
-    final parsed = deserializeShares(text);
+    final text = ShareSerializer.serializeShares(original);
+    final parsed = ShareSerializer.deserializeShares(text);
 
     expect(parsed, isA<ShamirShareV1>());
     final v1 = parsed as ShamirShareV1;
@@ -29,9 +29,9 @@ void main() {
       ..minShares = 3
       ..share = Uint8List.fromList([1, 2, 3, 4, 5]);
 
-    final text = serializeShares(original).replaceAll('Version=1', 'Version=2');
+    final text = ShareSerializer.serializeShares(original).replaceAll('Version=1', 'Version=2');
     expect(
-          () => deserializeShares(text),
+          () => ShareSerializer.deserializeShares(text),
       throwsA(predicate((e) =>
       e is Exception && e.toString().contains('Unsupported share version'))),
     );

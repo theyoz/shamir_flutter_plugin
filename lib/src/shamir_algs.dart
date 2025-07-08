@@ -11,7 +11,7 @@ bool listEquals<T>(List<T>? a, List<T>? b) {
 }
 
 abstract class IShamir {
-  List<Uint8List>? split(Uint8List secret,
+  List<Uint8List> split(Uint8List secret,
       {required int totalShares, required int threshold});
   Uint8List combine(List<Uint8List> shares);
 }
@@ -19,11 +19,11 @@ abstract class IShamir {
 /// Implementation of Shamir's Secret Sharing for arbitrary data
 class ShamirClaude01 implements IShamir {
   // Field size (a prime number) - using a Mersenne prime for efficiency
-  final int _prime = 257; // 2^8 + 1, good for byte operations
+  final int _prime = 251; // 2^8 + 1, good for byte operations
 
   /// Split a secret into n shares where k are required to reconstruct
   @override
-  List<Uint8List>? split(Uint8List secret,
+  List<Uint8List> split(Uint8List secret,
       {required int totalShares, required int threshold}) {
     if (threshold > totalShares) {
       throw ArgumentError('Threshold cannot be greater than total shares');
@@ -69,7 +69,11 @@ class ShamirClaude01 implements IShamir {
 
     // test shares
     Uint8List testRes = combine(shares);
-    return listEquals(secret, testRes) ? shares : null;
+    if (!listEquals(secret, testRes)) {
+      throw Exception("Failure to generate parts");
+    }
+
+    return shares;
   }
 
   /// Combine k or more shares to reconstruct the original secret

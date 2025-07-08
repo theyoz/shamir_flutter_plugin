@@ -23,11 +23,7 @@ void main() {
 
       setUp(() {
         final stopwatch = Stopwatch()..start();
-        List<Uint8List>? result;
-
-        while (result == null) {
-          result = shamir.split(secret, totalShares: totalShares, threshold: threshold);
-        }
+        List<Uint8List> result = shamir.split(secret, totalShares: totalShares, threshold: threshold);
 
         shares = result;
 

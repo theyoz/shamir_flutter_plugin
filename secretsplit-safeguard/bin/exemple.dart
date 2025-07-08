@@ -1,30 +1,3 @@
-# secretsplit
-
-[![pub package](https://img.shields.io/pub/v/secretsplit.svg)](https://pub.dev/packages/shamir_secret_plg)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Donate-blue?style=for-the-badge&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/yoramtelav0)
-
-A Flutter plugin for Shamir's Secret Sharing, supporting encryption, share splitting, and 
-cross-platform recovery — including support for Web, Android, iOS, Windows, macOS, and Linux.
-
-## 🔧 Features
-
-- Split secrets into N shares with a threshold
-- Combine shares to recover the original secret
-- Pure Dart or native-backed implementation (via FFI)
-- Works on all Flutter-supported platforms
-
-## 🚀 Getting Started
-
-Add to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  secretsplit: ^0.1.0
-```
-
-## Example
-
-```dart
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -59,4 +32,3 @@ void main(List<String> arguments) async {
   }
 
 }
-```
