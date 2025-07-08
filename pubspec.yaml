@@ -55,9 +55,6 @@ flutter:
       windows:
         package: com.example.shamir_secret_plg
         pluginClass: ShamirSecretPlgPlugin
-      web:
-        package: com.example.shamir_secret_plg
-        pluginClass: ShamirSecretPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
