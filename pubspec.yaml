@@ -83,3 +83,4 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/to/font-from-package
+repository: https://github.com/theyoz/shamir_flutter_plugin

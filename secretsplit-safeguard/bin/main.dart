@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -58,7 +57,7 @@ void main(List<String> arguments) async {
       final sharePaths = cmd.arguments.sublist(1);
       final shares = <Uint8List>[];
 
-      ShamirShare? firstShare = null;
+      ShamirShare? firstShare;
 
       for (final path in sharePaths) {
         ShamirShare deserialized;
