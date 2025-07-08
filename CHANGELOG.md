@@ -9,3 +9,7 @@
 ## 0.3.0
 
 - More correction for publishing plugin
+
+## 0.4.0
+
+- More correction for publishing plugin

@@ -2,7 +2,7 @@ name: shamir_secret_plg
 description:
   Shamir's Secret Sharing plugin for Flutter and Dart,
   threshold-based recovery, and cross-platform compatibility including web, mobile, and desktop.
-version: 0.3.0
+version: 0.4.0
 homepage: https://secretsplit.io
 
 environment:
